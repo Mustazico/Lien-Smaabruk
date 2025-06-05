@@ -3,7 +3,7 @@
         <ul class="ul">
             <li><a href="#home">Lien småbruk hovedside</a></li>
             <li><a href="#about">Lien småbruk miljø</a></li>
-            <li><a href="#services">Nansybu hovedside</a></li>
+            <li><nuxt-link to="/nansybu">Nansybu hovedside</nuxt-link></li>
             <li><a href="#contact">Fjelly hovedside</a></li>
             <li><a href="#contact">Fjelly Miljø</a></li>
             <li><a href="#contact">Straumøy hovedside</a></li>

@@ -2,13 +2,13 @@
      <div class="nav-container">
         <ul class="ul">
             <li><nuxt-link to="/lien">Lien småbruk hovedside</nuxt-link></li>
-            <li><a href="#about">Lien småbruk miljø</a></li>
+            <li><nuxt-link to="/lien/miljo">Lien småbruk miljø</nuxt-link></li>
             <li><nuxt-link to="/nansybu">Nansybu hovedside</nuxt-link></li>
             <li><nuxt-link to="/fjelly">Fjelly hovedside</nuxt-link></li>
-            <li><a href="#contact">Fjelly Miljø</a></li>
+            <li><nuxt-link to="/fjelly/miljo">Fjelly miljø</nuxt-link></li>
             <li><nuxt-link to="/straumoy">Straumøy hovedside</nuxt-link></li>
-            <li><a href="#contact">Straumøy Miljø</a></li>
-            <li><a href="#contact">Straumøy Vann</a></li>
+            <li><nuxt-link to="/straumoy/miljo">Straumøy miljø</nuxt-link></li>
+            <li><nuxt-link to="/straumoy/vann">Straumøy vann</nuxt-link></li>
         </ul>
     </div>
 </template>

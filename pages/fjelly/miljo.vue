@@ -1,11 +1,20 @@
 <template>
     <div class="container">
         <h1>Fjelly Miljø</h1>
+        <!-- Komponent for tabell av målinger -->
         <MeasurementTable
             :headers="['Navn', 'Måling', 'Dato']"
             :data="sensorData"
         />
-        <ChartComponent :options="chartOptions" />
+        <!-- Komponent for graf -->
+        <ChartComponent
+            title="Luftfuktighet"
+            :data="[70, 65, 80, 75]"
+            :timestamps="['2025-06-04 12:00', '2025-06-04 13:00', '2025-06-04 14:00', '2025-06-04 15:00']"
+            :yAxisTitle="'Luftfuktighet (%)'"
+            :color="'rgb(0, 128, 255)'"
+            :seriesName="'Luftfuktighet'"
+        />
     </div>
 </template>
 
@@ -13,55 +22,12 @@
 import MeasurementTable from '@/components/MeasurementTable.vue';
 import ChartComponent from '@/components/ChartComponent.vue';
 
-let data = ref([4.839, 5.241, 6.123, 7.456, 8.789, 9.012, 10.345, 11.678, 12.901, 13.234, 14.567, 15.890]);
-
-let currentCategory = ref(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
-
+// Data for sensormålinger
 const sensorData = [
     { name: 'Batteri spenning', value: '13.815 V', date: '2025-06-06 11:45:32' },
     { name: 'Temperatur stue', value: '4.839 °C', date: '2025-06-06 11:45:32' },
     { name: 'Temperatur ute', value: '15.241 °C', date: '2025-06-06 11:45:32' },
 ];
-
-const chartOptions = computed(() => ({
-    chart: {
-        type: 'line',
-        animation: false,
-    },
-    legend: {
-        enabled: false,
-    },
-    title: {
-        text: 'Temperatur stue',
-    },
-    xAxis: {
-        categories: currentCategory.value,
-    },
-    yAxis: {
-        title: {
-            text: 'Temperatur (°C)',
-        },
-    },
-    plotOptions: {
-        line: {
-            marker: {
-                enabled: false,
-            },
-            dataLabels: {
-                enabled: true,
-            },
-            enableMouseTracking: true,
-        },
-    },
-    series: [
-        {
-            name: 'Temperatur',
-            lineWidth: 3,
-            color: 'rgb(255, 0, 0)',
-            data: data.value,
-        },
-    ],
-}));
 </script>
 
 <style scoped>

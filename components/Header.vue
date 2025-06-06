@@ -22,7 +22,6 @@
       height: 100px;
       margin-bottom: 20px;
       align-content: center;
-    
     }
 
     .title {

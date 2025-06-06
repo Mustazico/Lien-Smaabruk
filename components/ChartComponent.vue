@@ -24,11 +24,11 @@
     color: {
         type: String,
         default: 'rgb(255, 0, 0)', // fallback to red
-  },
-  seriesName: {
-  type: String,
-  default: '',
-}
+    },
+    seriesName: {
+        type: String,
+        default: '',
+    }
   })
   
   const computedOptions = computed(() => ({

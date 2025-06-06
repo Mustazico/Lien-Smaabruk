@@ -9,8 +9,8 @@
         <!-- Komponent for graf -->
         <ChartComponent
             title="Luftfuktighet"
-            :data="[70, 65, 80, 75]"
-            :timestamps="['2025-06-04 12:00', '2025-06-04 13:00', '2025-06-04 14:00', '2025-06-04 15:00']"
+            :data="humidityData"
+            :timestamps="humidityTimestamps"
             :yAxisTitle="'Luftfuktighet (%)'"
             :color="'rgb(0, 128, 255)'"
             :seriesName="'Luftfuktighet'"
@@ -28,6 +28,15 @@ const sensorData = [
     { name: 'Temperatur stue', value: '4.839 °C', date: '2025-06-06 11:45:32' },
     { name: 'Temperatur ute', value: '15.241 °C', date: '2025-06-06 11:45:32' },
 ];
+
+const humidityData = ref([70, 65, 80, 75]);
+
+const humidityTimestamps = ref([
+  '2025-06-04 12:00',
+  '2025-06-04 13:00',
+  '2025-06-04 14:00',
+  '2025-06-04 15:00'
+]);
 </script>
 
 <style scoped>

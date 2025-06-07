@@ -9,7 +9,7 @@
         <!-- Komponent for graf -->
         <ChartComponent
             title="Luftfuktighet"
-            :data="humidityData"
+            :data="humidityValues"
             :timestamps="humidityTimestamps"
             :yAxisTitle="'Luftfuktighet (%)'"
             :color="'rgb(0, 128, 255)'"
@@ -21,22 +21,29 @@
 <script setup>
 import MeasurementTable from '@/components/MeasurementTable.vue';
 import ChartComponent from '@/components/ChartComponent.vue';
+import { useSensorStore } from '@/stores/sensorStore'
+
+const sensorStore = useSensorStore();
 
 // Data for sensormålinger
-const sensorData = [
-    { name: 'Batteri spenning', value: '13.815 V', date: '2025-06-06 11:45:32' },
-    { name: 'Temperatur stue', value: '4.839 °C', date: '2025-06-06 11:45:32' },
-    { name: 'Temperatur ute', value: '15.241 °C', date: '2025-06-06 11:45:32' },
-];
+const sensorData = computed(() =>
+  sensorStore.fjellySensorData.map(item => ({
+    name: item.name,
+    value: item.value + 
+    (typeof item.value === 'number' ? (item.name.includes('Temperatur') ? ' °C' : item.name.includes('Luftfuktighet') ? ' % ' : item.name.includes('Batteri') ? ' V' : '') : ''),
+    date: item.timestamp
+  }))
+)
 
-const humidityData = ref([70, 65, 80, 75]);
+const humidityValues = computed(() =>
+  sensorStore.fjellyLuftfuktighetData.map(item => item.value)
+)
 
-const humidityTimestamps = ref([
-  '2025-06-04 12:00',
-  '2025-06-04 13:00',
-  '2025-06-04 14:00',
-  '2025-06-04 15:00'
-]);
+const humidityTimestamps = computed(() =>
+  sensorStore.fjellyLuftfuktighetData.map(item => item.timestamp)
+)
+
+
 </script>
 
 <style scoped>

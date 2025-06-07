@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['nuxt-highcharts'],
+  modules: ['nuxt-highcharts', '@pinia/nuxt'],
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
 

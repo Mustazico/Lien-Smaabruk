@@ -47,6 +47,8 @@ defineProps({
     font-family: 'Inconsolata', 'sans-serif';
     font-weight: 400;
     margin-top: 20px;
+    flex-wrap: wrap;
+    padding: 0 20px;
 }
 
 .info-container {
@@ -65,12 +67,50 @@ h1 {
 }
 
 .image {
-    width: 100rem;
+    width: 90%;
     height: auto;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
     margin: 20px auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .info-container {
+    font-size: 20px;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .image {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info-container {
+    font-size: 21px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
 
 }
 </style>

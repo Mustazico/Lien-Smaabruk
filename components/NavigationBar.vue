@@ -19,6 +19,7 @@
     justify-content: center; 
     width: 100%;
     background-color: #000000; /* Background color for the navbar */
+    overflow-x: auto;
 }
 .ul {
     list-style-type: none;
@@ -26,12 +27,14 @@
     padding: 0;
     display: flex; 
     width: 100%;
+    flex-wrap: wrap;;
   
 }
 
 li {
-    flex: 1;
+    flex: 1 1 auto;
     text-align: center; 
+    min-width: 180px;
 }
 
 li a {
@@ -41,7 +44,7 @@ li a {
     text-decoration: none;
     color: rgb(255, 255, 255);
     background-color: #D1E9F6;
-    font-size: 27px;
+    font-size: clamp(16px, 2.5vw, 27px);
     color: #000;
     font-family: 'Inconsolata', sans-serif;
     white-space: nowrap;

@@ -33,9 +33,9 @@
 }
 
 .button {
-  height: 50px;
-  padding: 10px 30px;
-  font-size: 22px;
+  height: clamp(36px, 6vw, 50px);
+  padding: clamp(6px, 1.5vw, 10px) clamp(12px, 4vw, 30px);
+  font-size: clamp(14px, 2.5vw, 22px);
   background-color: #D1E9F6;
   border: none;
   border-radius: 5px;

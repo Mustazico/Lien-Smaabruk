@@ -1,13 +1,33 @@
 <template>
     <div class ="login-container">
         <h1 class="h">Login</h1>
-    <form class="login-form" @submit.prevent="handleLogin">
+        <form class="login-form" @submit.prevent="handleLogin">
         <label class="label" for="brukernavn">Brukernavn</label><br>
-        <input class="input" placeholder="Brukernavn" type="text" id="brukernavn" name="brukernavn" required>
+            <input
+            class="input"
+            placeholder="Brukernavn"
+            type="text"
+            id="brukernavn"
+            name="brukernavn"
+            v-model="brukernavn"
+            required
+            />
+
         <label class="label" for="passord">Passord</label><br>
-        <input class="input" placeholder="Passord" type="password" id="passord" name="passord" required>
+            <input
+            class="input"
+            placeholder="Passord"
+            type="password"
+            id="passord"
+            name="passord"
+            v-model="passord"
+            required
+            />
+
         <button class="button" type="submit">Logg inn</button>
-    </form>
+
+        <p v-if="errorMsg" style="color: red; margin-top: 10px;">{{ errorMsg }}</p>
+        </form>
 
     </div>
 </template>
@@ -16,11 +36,38 @@
 import { useRouter } from 'vue-router';
 const router = useRouter();
 
+const brukernavn = ref('');
+const passord = ref('');
+const errorMsg = ref('');
+
 // Funksjon for å håndtere innlogging
-function handleLogin() {
-    alert('Du er nå logget inn!'); 
-    console.log('Brukeren er logget inn'); 
-    router.push('/home');
+async function handleLogin() {
+  errorMsg.value = '';
+
+  try {
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: brukernavn.value,
+        password: passord.value,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      alert('Du er nå logget inn!');
+
+      localStorage.setItem('userlevel', data.userlevel);
+
+      router.push('/home');
+    } else {
+      errorMsg.value = data.message || 'Innlogging feilet';
+    }
+  } catch (err) {
+    errorMsg.value = 'En feil oppstod. Prøv igjen senere.';
+  }
 }
 </script>
 

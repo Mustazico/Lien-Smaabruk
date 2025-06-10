@@ -1,9 +1,20 @@
 <template>
   <div class="header-border">
     <div class="title">Lien Småbruk</div>
-    <button class="button">Logout</button>
+    <button class="button" @click="logout">Logout</button>
   </div>
 </template>
+
+<script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+async function logout() {
+  await $fetch('/api/logout', { method: 'POST' });
+  router.push('/');
+}
+</script>
 
 <style scoped>
 .header-border {

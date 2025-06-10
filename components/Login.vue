@@ -35,7 +35,7 @@
 <script setup>
 import { useRouter } from 'vue-router';
 const router = useRouter();
-
+const userState = useSessionUser();
 const brukernavn = ref('');
 const passord = ref('');
 const errorMsg = ref('');
@@ -57,10 +57,10 @@ async function handleLogin() {
     const data = await response.json();
 
     if (data.success) {
+    userState.value = data.user;
       alert('Du er nå logget inn!');
 
       localStorage.setItem('userlevel', data.userlevel);
-
       router.push('/home');
     } else {
       errorMsg.value = data.message || 'Innlogging feilet';

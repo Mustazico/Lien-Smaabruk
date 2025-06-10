@@ -31,5 +31,12 @@ export default defineEventHandler(async (event: H3Event) => {
     maxAge: 60 * 60 * 24, // 1 day
   });
 
-  return { success: true, uid: user.uid, userlevel: user.userlevel };
+  return {
+    success: true,
+    user: {
+      uid: user.uid,
+      userlevel: user.userlevel,
+      username: user.username,
+    },
+  };
 });

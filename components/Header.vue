@@ -1,20 +1,31 @@
 <template>
   <div class="header-border">
     <div class="title">Lien Småbruk</div>
-    <button class="button" @click="logout">Logout</button>
+    <button
+      v-if="user"
+      class="button"
+      @click="logout"
+    >
+      Logout
+    </button>
   </div>
 </template>
 
+
 <script setup>
 import { useRouter } from 'vue-router';
+import { useSessionUser } from '~/composables/useSessionUser';
 
 const router = useRouter();
+const user = useSessionUser();
 
 async function logout() {
   await $fetch('/api/logout', { method: 'POST' });
+  user.value = null;   // Clear global user state to trigger reactive update
   router.push('/');
 }
 </script>
+
 
 <style scoped>
 .header-border {

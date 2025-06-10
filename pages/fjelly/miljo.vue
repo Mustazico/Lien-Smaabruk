@@ -23,6 +23,10 @@ import MeasurementTable from '@/components/MeasurementTable.vue';
 import ChartComponent from '@/components/ChartComponent.vue';
 import { useSensorStore } from '@/stores/sensorStore'
 
+definePageMeta({
+  maxLevel: 6
+});
+
 const sensorStore = useSensorStore();
 
 // Data for sensormålinger

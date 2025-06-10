@@ -12,4 +12,7 @@
 
 <script setup>
 import ImageInfo from '@/components/ImageInfo.vue';
+definePageMeta({
+  maxLevel: 9
+});
 </script>

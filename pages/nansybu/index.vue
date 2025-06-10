@@ -13,6 +13,6 @@
 <script setup>
 import ImageInfo from '@/components/ImageInfo.vue';
 definePageMeta({
-  maxLevel: 3 // Only userlevel < 3 allowed
+  maxLevel: 9
 });
 </script>

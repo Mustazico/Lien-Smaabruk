@@ -11,6 +11,10 @@
 <script setup>
 import MeasurementTable from '@/components/MeasurementTable.vue';
 
+definePageMeta({
+  maxLevel: 6
+});
+
 const sensorData = [
     { name: 'Batteri spenning', value: '13.815 V', date: '2025-06-06 11:45:32' },
     { name: 'Temperatur stue', value: '4.839 °C', date: '2025-06-06 11:45:32' },

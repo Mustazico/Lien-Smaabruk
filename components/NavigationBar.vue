@@ -18,26 +18,33 @@
       :class="{ open: menuOpen }"
       class="nav-list"
     >
-      <li><nuxt-link to="/lien">Lien småbruk hovedside</nuxt-link></li>
-      <li><nuxt-link to="/lien/miljo">Lien småbruk miljø</nuxt-link></li>
-      <li><nuxt-link to="/nansybu">Nansybu hovedside</nuxt-link></li>
-      <li><nuxt-link to="/fjelly">Fjelly hovedside</nuxt-link></li>
-      <li><nuxt-link to="/fjelly/miljo">Fjelly miljø</nuxt-link></li>
-      <li><nuxt-link to="/straumoy">Straumøy hovedside</nuxt-link></li>
-      <li><nuxt-link to="/straumoy/miljo">Straumøy miljø</nuxt-link></li>
-      <li><nuxt-link to="/straumoy/vann">Straumøy vann</nuxt-link></li>
+      <li v-if="user?.userlevel < 9"><nuxt-link to="/lien">Lien småbruk hovedside</nuxt-link></li>
+      <li v-if="user?.userlevel < 6"><nuxt-link to="/lien/miljo">Lien småbruk miljø</nuxt-link></li>
+      <li v-if="user?.userlevel < 9"><nuxt-link to="/nansybu">Nansybu hovedside</nuxt-link></li>
+      <li v-if="user?.userlevel < 9"><nuxt-link to="/fjelly">Fjelly hovedside</nuxt-link></li>
+      <li v-if="user?.userlevel < 6"><nuxt-link to="/fjelly/miljo">Fjelly miljø</nuxt-link></li>
+      <li v-if="user?.userlevel < 9"><nuxt-link to="/straumoy">Straumøy hovedside</nuxt-link></li>
+      <li v-if="user?.userlevel < 6"><nuxt-link to="/straumoy/miljo">Straumøy miljø</nuxt-link></li>
+      <li v-if="user?.userlevel < 9"><nuxt-link to="/straumoy/vann">Straumøy vann</nuxt-link></li>
     </ul>
   </nav>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue';
+import { useSessionUser } from '~/composables/useSessionUser';
 
-const menuOpen = ref(false)
+const user = useSessionUser(); // Access the reactive user state
+const menuOpen = ref(false);
 
 function toggleMenu() {
-  menuOpen.value = !menuOpen.value
+  menuOpen.value = !menuOpen.value;
 }
+
+// Debugging: Log user state to verify reactivity
+watch(user, (newUser) => {
+  console.log('User state updated in Navbar:', newUser);
+});
 </script>
 
 <style scoped>

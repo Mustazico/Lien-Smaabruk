@@ -58,6 +58,8 @@ async function handleLogin() {
 
     if (data.success) {
     userState.value = data.user;
+    // Debugging  
+    console.log('User state updated:', userState.value);
       alert('Du er nå logget inn!');
 
       localStorage.setItem('userlevel', data.userlevel);
